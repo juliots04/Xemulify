@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Enfocado: pill de acento sólido -->
+    <item android:state_focused="true">
+        <shape android:shape="rectangle">
+            <gradient
+                android:angle="0"
+                android:startColor="#7C5CFF"
+                android:endColor="#9B7BFF" />
+            <corners android:radius="14dp" />
+        </shape>
+    </item>
+    <!-- Sección activa (no enfocada): pill tenue -->
+    <item android:state_activated="true">
+        <shape android:shape="rectangle">
+            <solid android:color="#231C46" />
+            <corners android:radius="14dp" />
+        </shape>
+    </item>
+    <!-- Normal -->
+    <item>
+        <shape android:shape="rectangle">
+            <solid android:color="#00000000" />
+            <corners android:radius="14dp" />
+        </shape>
+    </item>
+</selector>

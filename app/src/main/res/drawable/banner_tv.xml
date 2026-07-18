@@ -1,0 +1,68 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:aapt="http://schemas.android.com/aapt"
+    android:width="320dp"
+    android:height="180dp"
+    android:viewportWidth="320"
+    android:viewportHeight="180">
+
+    <!-- AMOLED background -->
+    <path android:pathData="M0,0h320v180h-320Z">
+        <aapt:attr name="android:fillColor">
+            <gradient
+                android:type="radial"
+                android:centerX="70"
+                android:centerY="80"
+                android:gradientRadius="220"
+                android:startColor="#14101E"
+                android:endColor="#000000" />
+        </aapt:attr>
+    </path>
+
+    <!-- Mark: X monogram -->
+    <path
+        android:strokeColor="#4B3AA6"
+        android:strokeWidth="11"
+        android:strokeLineCap="round"
+        android:pathData="M36,64L74,102" />
+    <path
+        android:strokeWidth="11"
+        android:strokeLineCap="round"
+        android:pathData="M74,64L36,102">
+        <aapt:attr name="android:strokeColor">
+            <gradient
+                android:startX="36" android:startY="64"
+                android:endX="74" android:endY="102"
+                android:startColor="#9B7BFF"
+                android:endColor="#F472B6" />
+        </aapt:attr>
+    </path>
+
+    <!-- Wordmark "Xemulify" -->
+    <group>
+        <path
+            android:strokeColor="#F4F4F6"
+            android:strokeWidth="5"
+            android:strokeLineCap="round"
+            android:strokeLineJoin="round"
+            android:pathData="M112,72L132,102M132,72L112,102M144,72L144,102M144,72L160,72M144,87L158,87M144,102L160,102M170,102L170,72L182,90L194,72L194,102M204,72L204,96Q204,102 210,102L214,102Q220,102 220,96L220,72M230,72L230,102L246,102M256,72L256,102M268,102L268,72L284,72M268,88L280,88M292,72L301,90L310,72M301,90L301,102" />
+    </group>
+
+    <!-- accent underline -->
+    <path
+        android:strokeWidth="4"
+        android:strokeLineCap="round"
+        android:pathData="M112,116L200,116">
+        <aapt:attr name="android:strokeColor">
+            <gradient
+                android:startX="112" android:startY="116"
+                android:endX="200" android:endY="116"
+                android:startColor="#7C5CFF"
+                android:endColor="#F472B6" />
+        </aapt:attr>
+    </path>
+
+    <!-- PS1 tag dots -->
+    <path
+        android:fillColor="#5E5E68"
+        android:pathData="M214,116m-2,0a2,2 0,1,1 4,0a2,2 0,1,1 -4,0" />
+</vector>

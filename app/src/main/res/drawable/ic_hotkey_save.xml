@@ -1,0 +1,25 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="34dp"
+    android:height="34dp"
+    android:viewportWidth="48"
+    android:viewportHeight="48">
+    <path
+        android:fillColor="#111114"
+        android:pathData="M24,3.5A20.5,20.5 0,1,0 44.5,24A20.5,20.5 0,0,0 24,3.5Z"/>
+    <path
+        android:strokeColor="#2A2A33"
+        android:strokeWidth="1.5"
+        android:pathData="M24,3.5A20.5,20.5 0,1,0 44.5,24A20.5,20.5 0,0,0 24,3.5Z"/>
+    <!-- down arrow into tray -->
+    <path
+        android:strokeColor="#4ADE80"
+        android:strokeWidth="2.6"
+        android:strokeLineCap="round"
+        android:strokeLineJoin="round"
+        android:pathData="M24,13v11M19,20l5,5l5,-5"/>
+    <path
+        android:strokeColor="#9A9AA5"
+        android:strokeWidth="2.6"
+        android:strokeLineCap="round"
+        android:pathData="M15,31h18"/>
+</vector>

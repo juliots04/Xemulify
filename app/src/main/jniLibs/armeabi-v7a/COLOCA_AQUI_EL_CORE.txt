@@ -1,0 +1,8 @@
+Coloca aquí el core de PS1 para TV boxes ARM de 32 bits (equipos más antiguos/baratos).
+
+1. Descarga:  https://buildbot.libretro.com/nightly/android/latest/armeabi-v7a/pcsx_rearmed_libretro_android.so.zip
+2. Descomprime el .zip -> obtienes  pcsx_rearmed_libretro_android.so
+3. Renómbralo a:  libpcsx_rearmed_libretro.so
+4. Déjalo en esta misma carpeta (jniLibs/armeabi-v7a/).
+
+Si no sabes qué ABI tiene tu TV, pon el core en las dos (arm64-v8a y armeabi-v7a).

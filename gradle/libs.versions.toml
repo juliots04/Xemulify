@@ -1,0 +1,25 @@
+[versions]
+agp = "9.2.1"
+coreKtx = "1.10.1"
+leanback = "1.2.0"
+glide = "4.11.0"
+lifecycle = "2.6.2"
+fragment = "1.6.2"
+activity = "1.8.2"
+# LibretroDroid: si JitPack falla al resolver esta versión, mira las disponibles en
+# https://jitpack.io/#Swordfish90/LibretroDroid y actualiza aquí (p. ej. un tag o commit corto).
+libretrodroid = "0.9.0"
+
+[libraries]
+androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
+androidx-leanback = { group = "androidx.leanback", name = "leanback", version.ref = "leanback" }
+androidx-lifecycle-runtime = { group = "androidx.lifecycle", name = "lifecycle-runtime-ktx", version.ref = "lifecycle" }
+androidx-fragment-ktx = { group = "androidx.fragment", name = "fragment-ktx", version.ref = "fragment" }
+androidx-activity-ktx = { group = "androidx.activity", name = "activity-ktx", version.ref = "activity" }
+glide = { group = "com.github.bumptech.glide", name = "glide", version.ref = "glide" }
+libretrodroid = { group = "com.github.Swordfish90", name = "libretrodroid", version.ref = "libretrodroid" }
+
+[plugins]
+android-application = { id = "com.android.application", version.ref = "agp" }
+
+

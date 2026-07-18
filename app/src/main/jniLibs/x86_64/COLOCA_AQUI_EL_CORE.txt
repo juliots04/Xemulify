@@ -1,0 +1,7 @@
+Coloca aquí el core de PS1 SOLO si vas a probar en el emulador de Android Studio (x86_64).
+En una TV real normalmente NO hace falta este.
+
+1. Descarga:  https://buildbot.libretro.com/nightly/android/latest/x86_64/pcsx_rearmed_libretro_android.so.zip
+2. Descomprime el .zip -> obtienes  pcsx_rearmed_libretro_android.so
+3. Renómbralo a:  libpcsx_rearmed_libretro.so
+4. Déjalo en esta misma carpeta (jniLibs/x86_64/).

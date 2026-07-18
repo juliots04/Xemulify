@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- ===== AMOLED base ===== -->
+    <color name="amoled_black">#000000</color>
+    <color name="surface_1">#0A0A0C</color>
+    <color name="surface_2">#111114</color>
+    <color name="surface_3">#17171B</color>
+    <color name="stroke_subtle">#1C1C22</color>
+    <color name="stroke_strong">#2A2A33</color>
+
+    <!-- ===== Texto ===== -->
+    <color name="text_primary">#F4F4F6</color>
+    <color name="text_secondary">#9A9AA5</color>
+    <color name="text_muted">#5E5E68</color>
+
+    <!-- ===== Acento (violeta/índigo eléctrico) ===== -->
+    <color name="accent">#7C5CFF</color>
+    <color name="accent_dim">#5B45C7</color>
+    <color name="accent_soft">#231C46</color>
+    <color name="danger">#FF5A5A</color>
+    <color name="danger_soft">#2A1618</color>
+
+    <!-- ===== Símbolos PlayStation ===== -->
+    <color name="ps_triangle">#4ADE80</color>
+    <color name="ps_circle">#FF6B6B</color>
+    <color name="ps_cross">#5AB8FF</color>
+    <color name="ps_square">#F472B6</color>
+    <color name="ps_neutral">#C7C7D1</color>
+
+    <!-- ===== Overrides de Leanback ===== -->
+    <color name="background_gradient_start">#000000</color>
+    <color name="background_gradient_end">#000000</color>
+    <color name="fastlane_background">#000000</color>
+    <color name="selected_background">#7C5CFF</color>
+    <color name="search_opaque">#7C5CFF</color>
+    <color name="default_background">#0A0A0C</color>
+</resources>

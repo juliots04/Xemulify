@@ -1,0 +1,8 @@
+Coloca aquí el core de PS1 para dispositivos ARM de 64 bits (la mayoría de TV boxes y Fire TV/Chromecast recientes).
+
+1. Descarga:  https://buildbot.libretro.com/nightly/android/latest/arm64-v8a/pcsx_rearmed_libretro_android.so.zip
+2. Descomprime el .zip -> obtienes  pcsx_rearmed_libretro_android.so
+3. Renómbralo a:  libpcsx_rearmed_libretro.so
+4. Déjalo en esta misma carpeta (jniLibs/arm64-v8a/).
+
+Luego borra este .txt (opcional) y reinstala la app.

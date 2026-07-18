@@ -1,0 +1,28 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:aapt="http://schemas.android.com/aapt"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+    <!-- Back diagonal of the X (dim accent, depth) -->
+    <path
+        android:strokeColor="#4B3AA6"
+        android:strokeWidth="13"
+        android:strokeLineCap="round"
+        android:pathData="M39,39L69,69" />
+    <!-- Front diagonal of the X (vivid gradient) -->
+    <path
+        android:strokeWidth="13"
+        android:strokeLineCap="round"
+        android:pathData="M69,39L39,69">
+        <aapt:attr name="android:strokeColor">
+            <gradient
+                android:startX="39"
+                android:startY="39"
+                android:endX="69"
+                android:endY="69"
+                android:startColor="#9B7BFF"
+                android:endColor="#F472B6" />
+        </aapt:attr>
+    </path>
+</vector>

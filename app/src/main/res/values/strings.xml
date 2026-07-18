@@ -1,0 +1,108 @@
+<resources>
+    <string name="app_name">Xemulify</string>
+
+    <!-- Biblioteca -->
+    <string name="library_title">Xemulify · PS1</string>
+    <string name="row_games">Juegos</string>
+    <string name="row_settings">Ajustes</string>
+    <string name="card_playstation">PlayStation 1</string>
+    <string name="section_games_label">Tu biblioteca</string>
+    <string name="section_settings_label">Configuración</string>
+
+    <string name="action_add_game">Añadir juego</string>
+    <string name="action_add_game_sub">Selecciona el .bin / .cue</string>
+    <string name="action_keys">Configurar teclas</string>
+    <string name="action_keys_sub">Asigna teclado → mando</string>
+    <string name="action_bios">Importar BIOS</string>
+    <string name="action_help">Ayuda / estado</string>
+
+    <string name="status_bios_ok">BIOS instalado ✓</string>
+    <string name="status_bios_missing">Falta el BIOS ✗</string>
+    <string name="status_core_ok">Core listo ✓</string>
+    <string name="status_core_missing">Falta el core ✗</string>
+
+    <!-- Importación -->
+    <string name="importing">Importando juego…</string>
+    <string name="imported_ok">Añadido: %1$s</string>
+    <string name="import_error">Error al importar: %1$s</string>
+    <string name="bios_imported">BIOS importado: %1$s</string>
+
+    <!-- Emulador -->
+    <string name="error_no_game">No se encontró el juego.</string>
+    <string name="error_core_missing">Falta el core de PS1. Coloca el .so en jniLibs y reinstala (ver ayuda).</string>
+    <string name="warn_no_bios">Aviso: no hay BIOS de PS1. Importa uno para máxima compatibilidad con CTR.</string>
+
+    <string name="menu_title">Menú del emulador</string>
+    <string name="menu_save_state">Guardar estado</string>
+    <string name="menu_load_state">Cargar estado</string>
+    <string name="menu_general">Ajustes generales</string>
+    <string name="menu_configure_keys">Configurar teclas</string>
+    <string name="menu_exit">Salir del juego</string>
+
+    <!-- Sección General -->
+    <string name="action_general">General</string>
+    <string name="action_general_sub">Pantalla, autoguardado, avance rápido</string>
+    <string name="general_title">Ajustes generales</string>
+    <string name="general_subtitle">Opciones del emulador</string>
+    <string name="gen_aspect_title">Pantalla completa (16:9)</string>
+    <string name="gen_aspect_sub">Estira la imagen; si se desactiva, 4:3 centrado</string>
+    <string name="gen_hud_title">Mostrar controles en pantalla</string>
+    <string name="gen_hud_sub">HUD con la tecla de cada botón</string>
+    <string name="gen_autosave_title">Autoguardado</string>
+    <string name="gen_autosave_sub">Guarda automáticamente en la ranura elegida</string>
+    <string name="gen_slot_title">Ranura de autoguardado</string>
+    <string name="gen_slot_sub">Dónde se guarda la partida automática</string>
+    <string name="gen_slot_value">Ranura %1$d</string>
+    <string name="gen_ff_key_title">Avance rápido · tecla</string>
+    <string name="gen_ff_key_sub">Manténla pulsada durante el juego para acelerar</string>
+    <string name="gen_ff_speed_title">Avance rápido · velocidad</string>
+    <string name="gen_ff_speed_sub">Cuánto se acelera al mantener la tecla</string>
+    <string name="gen_press_key">Pulsa una tecla…</string>
+    <string name="gen_speed_value">%1$dx</string>
+
+    <!-- Autoguardado -->
+    <string name="autosave_disable">Desactivar autoguardado</string>
+    <string name="autosave_slot_option">Autoguardar en la ranura %1$d</string>
+    <string name="autosave_on">Autoguardado activado · ranura %1$d</string>
+    <string name="autosave_off">Autoguardado desactivado</string>
+    <string name="action_autosave">Autoguardado</string>
+    <string name="autosave_card_on">Activado · ranura %1$d</string>
+    <string name="autosave_card_off">Desactivado · púlsalo para activar</string>
+
+    <!-- Avance rápido -->
+    <string name="ff_change_key">Cambiar tecla (actual: %1$s)</string>
+    <string name="ff_speed">Velocidad: %1$dx</string>
+    <string name="ff_reset">Restablecer avance rápido</string>
+    <string name="ff_assign_title">Asignar tecla de avance rápido</string>
+    <string name="ff_assign_msg">Pulsa la tecla que quieres usar. Manténla pulsada durante el juego para acelerar. ATRÁS cancela.</string>
+    <string name="ff_assigned">Avance rápido: %1$s</string>
+    <string name="ff_key_reserved">Esa tecla está reservada.</string>
+    <string name="ff_reset_done">Avance rápido restablecido.</string>
+    <string name="ff_speed_changed">Velocidad de avance rápido: %1$dx</string>
+
+    <string name="slot_used">Ranura %1$d · guardada</string>
+    <string name="slot_empty">Ranura %1$d · vacía</string>
+    <string name="slot_is_empty">Esa ranura está vacía.</string>
+    <string name="state_saved">Estado guardado en la ranura %1$d.</string>
+    <string name="state_loaded">Estado cargado de la ranura %1$d.</string>
+    <string name="state_error">No se pudo completar la operación de estado.</string>
+
+    <!-- Configuración de teclas -->
+    <string name="keys_title">Configurar teclas del mando (PS1)</string>
+    <string name="keys_instructions">Selecciona un botón y pulsa la tecla del teclado que quieres asignarle. ATRÁS cancela.</string>
+    <string name="keys_row">%1$s  →  %2$s</string>
+    <string name="keys_press_now">%1$s  →  pulsa una tecla…</string>
+    <string name="keys_assigned">Tecla asignada.</string>
+    <string name="keys_reset">Restablecer valores por defecto</string>
+    <string name="keys_reset_done">Teclas restablecidas.</string>
+
+    <!-- Atajos del emulador -->
+    <string name="keys_hotkeys_header">Atajos del emulador</string>
+    <string name="hotkey_fast_forward">Avance rápido (mantener)</string>
+    <string name="hotkey_quick_save">Guardado rápido</string>
+    <string name="hotkey_quick_load">Carga rápida</string>
+
+    <!-- Ayuda -->
+    <string name="help_title">Cómo poner en marcha Xemulify</string>
+    <string name="help_body">Estado:\n  • Core de PS1: %1$s\n  • BIOS: %2$s\n\n1) Core: descarga pcsx_rearmed_libretro_android.so del buildbot de libretro, descomprímelo y colócalo en app/src/main/jniLibs/&lt;abi&gt;/libpcsx_rearmed_libretro.so, luego reinstala.\n\n2) BIOS: usa \"Importar BIOS\" y elige tu scph5501.bin.\n\n3) Juego: usa \"Añadir juego\" y selecciona el .bin (y el .cue si lo tienes).\n\n4) Teclas: \"Configurar teclas\" para asignar tu teclado.\n\nDentro del juego, pulsa ATRÁS o MENÚ para guardar/cargar estado o salir.</string>
+</resources>

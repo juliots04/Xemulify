@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/home_root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/bg_home"
+    android:paddingLeft="52dp"
+    android:paddingTop="40dp"
+    android:paddingRight="52dp"
+    android:paddingBottom="28dp"
+    tools:context=".MainActivity">
+
+    <!-- Header -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:layout_marginBottom="28dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/app_name"
+            android:textColor="@color/text_primary"
+            android:textSize="34sp"
+            android:fontFamily="sans-serif-medium"
+            android:letterSpacing="-0.01" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="14dp"
+            android:text="Ps1 :3"
+            android:textColor="#FFFFFF"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            android:fontFamily="sans-serif-medium"
+            android:letterSpacing="0.06"
+            android:background="@drawable/bg_ps1_pill"
+            android:paddingLeft="12dp"
+            android:paddingRight="12dp"
+            android:paddingTop="4dp"
+            android:paddingBottom="4dp" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_weight="1" />
+
+        <TextView
+            android:id="@+id/txt_status"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/text_secondary"
+            android:textSize="13sp"
+            android:fontFamily="sans-serif" />
+    </LinearLayout>
+
+    <!-- Body: nav rail + content grid -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="horizontal">
+
+        <!-- Nav rail -->
+        <LinearLayout
+            android:layout_width="210dp"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:paddingEnd="24dp">
+
+            <TextView
+                android:id="@+id/nav_games"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/row_games"
+                android:textColor="@color/text_secondary"
+                android:textSize="17sp"
+                android:fontFamily="sans-serif-medium"
+                android:background="@drawable/bg_nav_item"
+                android:paddingLeft="18dp"
+                android:paddingRight="18dp"
+                android:paddingTop="13dp"
+                android:paddingBottom="13dp"
+                android:layout_marginBottom="8dp"
+                android:focusable="true"
+                android:clickable="true" />
+
+            <TextView
+                android:id="@+id/nav_settings"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/row_settings"
+                android:textColor="@color/text_secondary"
+                android:textSize="17sp"
+                android:fontFamily="sans-serif-medium"
+                android:background="@drawable/bg_nav_item"
+                android:paddingLeft="18dp"
+                android:paddingRight="18dp"
+                android:paddingTop="13dp"
+                android:paddingBottom="13dp"
+                android:focusable="true"
+                android:clickable="true" />
+        </LinearLayout>
+
+        <!-- Content -->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/txt_section"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/text_muted"
+                android:textSize="12sp"
+                android:fontFamily="sans-serif-medium"
+                android:textAllCaps="true"
+                android:letterSpacing="0.1"
+                android:layout_marginStart="6dp"
+                android:layout_marginBottom="14dp" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/grid"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:clipToPadding="false"
+                android:paddingBottom="16dp"
+                android:scrollbars="none" />
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

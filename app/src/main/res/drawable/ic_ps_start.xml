@@ -1,0 +1,17 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="46dp"
+    android:height="26dp"
+    android:viewportWidth="46"
+    android:viewportHeight="26">
+    <path
+        android:fillColor="#111114"
+        android:pathData="M13,3h20a10,10 0,0,1 0,20H13a10,10 0,0,1 0,-20Z"/>
+    <path
+        android:strokeColor="#2A2A33"
+        android:strokeWidth="1.4"
+        android:pathData="M13,3h20a10,10 0,0,1 0,20H13a10,10 0,0,1 0,-20Z"/>
+    <!-- glyph: play triangle -->
+    <path
+        android:fillColor="#4ADE80"
+        android:pathData="M19,9L27,13L19,17Z"/>
+</vector>

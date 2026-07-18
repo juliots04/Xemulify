@@ -1,0 +1,26 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="40dp"
+    android:height="40dp"
+    android:viewportWidth="48"
+    android:viewportHeight="48">
+    <!-- floppy / save body -->
+    <path
+        android:strokeColor="#9A9AA5"
+        android:strokeWidth="2.6"
+        android:strokeLineJoin="round"
+        android:pathData="M16,15h13l4,4v13a1,1 0,0,1 -1,1H16a1,1 0,0,1 -1,-1V16A1,1 0,0,1 16,15Z"/>
+    <path
+        android:strokeColor="#9A9AA5"
+        android:strokeWidth="2.2"
+        android:strokeLineJoin="round"
+        android:pathData="M19,15v5h8v-5"/>
+    <!-- auto loop badge -->
+    <path
+        android:strokeColor="#7C5CFF"
+        android:strokeWidth="2.4"
+        android:strokeLineCap="round"
+        android:pathData="M20.5,27.5a4,4 0,1,0 1.2,-2.9"/>
+    <path
+        android:fillColor="#7C5CFF"
+        android:pathData="M21.2,23.2l0.3,2.7l-2.7,-0.3Z"/>
+</vector>
