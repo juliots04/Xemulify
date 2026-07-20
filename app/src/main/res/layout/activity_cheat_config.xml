@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/bg_home"
+    android:paddingLeft="56dp"
+    android:paddingTop="40dp"
+    android:paddingRight="56dp"
+    android:paddingBottom="28dp">
+
+    <!-- Header -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:layout_marginBottom="24dp">
+
+        <ImageView
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:background="@drawable/bg_header_icon"
+            android:padding="12dp"
+            android:src="@drawable/ic_cheat"
+            android:scaleType="fitCenter" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:layout_marginStart="16dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/cheats_title"
+                android:textColor="@color/text_primary"
+                android:textSize="26sp"
+                android:fontFamily="sans-serif-medium"
+                android:letterSpacing="-0.01" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="3dp"
+                android:text="@string/cheats_subtitle"
+                android:textColor="@color/text_secondary"
+                android:textSize="13sp" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:fillViewport="true"
+        android:scrollbars="none"
+        android:clipToPadding="false"
+        android:paddingBottom="8dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@drawable/bg_section_panel"
+            android:paddingTop="16dp"
+            android:paddingBottom="18dp"
+            android:paddingStart="20dp"
+            android:paddingEnd="20dp">
+
+            <LinearLayout
+                android:id="@+id/cheat_list_container"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:focusable="false" />
+
+            <Button
+                android:id="@+id/btn_add_cheat"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/bg_text_focus"
+                android:text="@string/cheats_add"
+                android:textColor="@color/accent"
+                android:textSize="14sp"
+                android:textAllCaps="false"
+                android:fontFamily="sans-serif-medium"
+                android:paddingLeft="16dp"
+                android:paddingRight="16dp"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:focusable="true" />
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

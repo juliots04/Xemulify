@@ -12,16 +12,22 @@ import android.view.WindowManager
 import android.widget.FrameLayout
 import android.widget.Toast
 import androidx.fragment.app.FragmentActivity
+import androidx.lifecycle.lifecycleScope
 import com.example.xemulify.R
+import com.example.xemulify.cheats.CheatConfigActivity
+import com.example.xemulify.cheats.CheatStore
 import com.example.xemulify.core.CoreManager
 import com.example.xemulify.input.KeyMappingStore
 import com.example.xemulify.input.PsxInputTranslator
+import com.example.xemulify.settings.ControlsActivity
 import com.example.xemulify.settings.GeneralSettingsActivity
-import com.example.xemulify.settings.KeyConfigActivity
 import com.example.xemulify.settings.SettingsStore
 import com.swordfish.libretrodroid.GLRetroView
 import com.swordfish.libretrodroid.GLRetroViewData
 import com.swordfish.libretrodroid.ShaderConfig
+import kotlinx.coroutines.flow.filterIsInstance
+import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.launch
 import java.io.File
 
 /**
@@ -33,6 +39,7 @@ class GameActivity : FragmentActivity() {
     private lateinit var retroView: GLRetroView
     private lateinit var translator: PsxInputTranslator
     private lateinit var mappingStore: KeyMappingStore
+    private lateinit var cheatStore: CheatStore
     private lateinit var settings: SettingsStore
 
     private lateinit var gameFile: File
@@ -43,6 +50,8 @@ class GameActivity : FragmentActivity() {
     private var currentResizeMode = 3
     private var fastForwarding = false
     private var hudVisible = false
+    private var coreReady = false
+    private var lastAppliedCheatCount = 0
 
     private val handler = Handler(Looper.getMainLooper())
     private val autosaveRunnable = object : Runnable {
@@ -76,6 +85,7 @@ class GameActivity : FragmentActivity() {
         }
 
         mappingStore = KeyMappingStore(this)
+        cheatStore = CheatStore(this)
         settings = SettingsStore(this)
         currentResizeMode = if (settings.aspectFill) 3 else 0
 
@@ -110,8 +120,23 @@ class GameActivity : FragmentActivity() {
         lifecycle.addObserver(retroView)
         retroView.post { runCatching { retroView.setResizeMode(currentResizeMode) } }
 
-        translator = PsxInputTranslator(retroView, mappingStore.buildReverseMap())
+        translator = PsxInputTranslator(
+            retroView,
+            mappingStore.buildP1Map(),
+            mappingStore.buildP2Map(),
+            mappingStore.buildGamepadMap(),
+        )
         started = true
+
+        // Los cheats se aplican cuando el core ya está corriendo (primer frame dibujado);
+        // aplicarlos antes devolvería ERROR_CHEAT porque el juego aún no está cargado.
+        lifecycleScope.launch {
+            retroView.getGLRetroEvents()
+                .filterIsInstance<GLRetroView.GLRetroEvents.FrameRendered>()
+                .first()
+            coreReady = true
+            applyCheats()
+        }
 
         applyAspect()
         syncControlsHud()
@@ -125,10 +150,16 @@ class GameActivity : FragmentActivity() {
     override fun onResume() {
         super.onResume()
         if (started) {
-            translator.updateMapping(mappingStore.buildReverseMap())
+            translator.updateMapping(
+                mappingStore.buildP1Map(),
+                mappingStore.buildP2Map(),
+                mappingStore.buildGamepadMap(),
+            )
             applyAspect()
             syncControlsHud()
             scheduleAutosave()
+            // Refleja cambios hechos en la pantalla de trucos sin reiniciar el juego.
+            if (coreReady) applyCheats()
         }
     }
 
@@ -162,12 +193,43 @@ class GameActivity : FragmentActivity() {
             }
         }
 
-        if (event.action == KeyEvent.ACTION_DOWN && event.repeatCount == 0 && isMenuKey(event.keyCode)) {
-            showInGameMenu()
+        // El menú se abre al SOLTAR la tecla (ACTION_UP), no al pulsarla. Si se abriera en
+        // ACTION_DOWN, el ACTION_UP de esa misma pulsación cerraría el diálogo al instante
+        // (Escape/ATRÁS usan dismiss en ACTION_UP), por lo que solo parecía abrirse mientras
+        // se mantenía la tecla pulsada. Consumimos ambas acciones para que la tecla no llegue
+        // ni al traductor ni al sistema.
+        if (isMenuKey(event.keyCode)) {
+            if (event.action == KeyEvent.ACTION_UP) showInGameMenu()
             return true
         }
         if (translator.handleKeyEvent(event)) return true
         return super.dispatchKeyEvent(event)
+    }
+
+    /** Movimiento del mando (cruceta analógica / stick izquierdo) hacia el core. */
+    override fun onGenericMotionEvent(event: android.view.MotionEvent): Boolean {
+        if (started && !menuOpen && translator.handleMotionEvent(event)) return true
+        return super.onGenericMotionEvent(event)
+    }
+
+    // ---- Cheats --------------------------------------------------------------
+
+    /**
+     * Vuelca todos los cheats del juego al core: cada uno en su ranura, con su estado
+     * (activo/inactivo). Las ranuras que quedaron libres tras borrar un truco se apagan.
+     */
+    private fun applyCheats() {
+        if (!started) return
+        val cheats = cheatStore.getCheats(gameId)
+        cheats.forEachIndexed { index, cheat ->
+            runCatching {
+                retroView.setCheat(index, cheat.enabled, CheatStore.normalizeCode(cheat.code))
+            }
+        }
+        for (index in cheats.size until lastAppliedCheatCount) {
+            runCatching { retroView.setCheat(index, false, "00000000 0000") }
+        }
+        lastAppliedCheatCount = cheats.size
     }
 
     // ---- Avance rápido -------------------------------------------------------
@@ -206,8 +268,7 @@ class GameActivity : FragmentActivity() {
         val options = arrayOf(
             getString(R.string.menu_save_state),
             getString(R.string.menu_load_state),
-            getString(R.string.menu_general),
-            getString(R.string.menu_configure_keys),
+            getString(R.string.menu_settings),
             getString(R.string.menu_exit),
         )
         val dialog = AlertDialog.Builder(this, R.style.Theme_Xemulify_Dialog)
@@ -216,9 +277,31 @@ class GameActivity : FragmentActivity() {
                 when (which) {
                     0 -> showSlotDialog(saving = true)
                     1 -> showSlotDialog(saving = false)
-                    2 -> startActivity(Intent(this, GeneralSettingsActivity::class.java))
-                    3 -> startActivity(Intent(this, KeyConfigActivity::class.java))
-                    4 -> finish()
+                    2 -> showSettingsSubmenu()
+                    3 -> finish()
+                }
+            }
+            .setOnDismissListener { menuOpen = false }
+            .create()
+        dialog.dismissOnEscape()
+        dialog.show()
+    }
+
+    /** Submenú "Ajustes": controles (primero), ajustes generales y cheats. */
+    private fun showSettingsSubmenu() {
+        menuOpen = true
+        val options = arrayOf(
+            getString(R.string.menu_configure_keys),
+            getString(R.string.menu_general),
+            getString(R.string.menu_cheats),
+        )
+        val dialog = AlertDialog.Builder(this, R.style.Theme_Xemulify_Dialog)
+            .setTitle(R.string.menu_settings)
+            .setItems(options) { _, which ->
+                when (which) {
+                    0 -> startActivity(Intent(this, ControlsActivity::class.java))
+                    1 -> startActivity(Intent(this, GeneralSettingsActivity::class.java))
+                    2 -> CheatConfigActivity.start(this, gameId)
                 }
             }
             .setOnDismissListener { menuOpen = false }
@@ -254,7 +337,7 @@ class GameActivity : FragmentActivity() {
             val icon = chip.findViewById<android.widget.ImageView>(R.id.hud_icon)
             val key = chip.findViewById<android.widget.TextView>(R.id.hud_key)
             icon.setImageResource(hudIconFor(button))
-            key.text = KeyEvent.keyCodeToString(map.keyboardKeyCodeFor(button)).removePrefix("KEYCODE_")
+            key.text = KeyEvent.keyCodeToString(map.p1KeyCodeFor(button)).removePrefix("KEYCODE_")
             grid.addView(chip)
         }
     }
@@ -319,15 +402,24 @@ class GameActivity : FragmentActivity() {
 
     private fun loadState(slot: Int) {
         val f = stateFile(slot)
-        if (!f.exists()) {
+        if (!f.exists() || f.length() == 0L) {
             Toast.makeText(this, R.string.slot_is_empty, Toast.LENGTH_SHORT).show()
             return
         }
-        try {
-            retroView.unserializeState(f.readBytes())
-            Toast.makeText(this, getString(R.string.state_loaded, slot), Toast.LENGTH_SHORT).show()
-        } catch (e: Exception) {
-            Toast.makeText(this, R.string.state_error, Toast.LENGTH_SHORT).show()
+        tryLoadState(f.readBytes(), slot, attempts = 6)
+    }
+
+    /**
+     * Carga un estado comprobando el resultado de [GLRetroView.unserializeState]. Si el core
+     * aún no está listo (devuelve false), reintenta un momento — antes se ignoraba el booleano
+     * y parecía que "no cargaba".
+     */
+    private fun tryLoadState(bytes: ByteArray, slot: Int, attempts: Int) {
+        val ok = runCatching { retroView.unserializeState(bytes) }.getOrDefault(false)
+        when {
+            ok -> Toast.makeText(this, getString(R.string.state_loaded, slot), Toast.LENGTH_SHORT).show()
+            attempts > 0 -> handler.postDelayed({ tryLoadState(bytes, slot, attempts - 1) }, 300)
+            else -> Toast.makeText(this, R.string.state_error, Toast.LENGTH_SHORT).show()
         }
     }
 

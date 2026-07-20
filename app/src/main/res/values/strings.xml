@@ -3,7 +3,7 @@
 
     <!-- Biblioteca -->
     <string name="library_title">Xemulify · PS1</string>
-    <string name="row_games">Juegos</string>
+    <string name="row_games">Biblioteca</string>
     <string name="row_settings">Ajustes</string>
     <string name="card_playstation">PlayStation 1</string>
     <string name="section_games_label">Tu biblioteca</string>
@@ -36,8 +36,80 @@
     <string name="menu_save_state">Guardar estado</string>
     <string name="menu_load_state">Cargar estado</string>
     <string name="menu_general">Ajustes generales</string>
-    <string name="menu_configure_keys">Configurar teclas</string>
+    <string name="menu_configure_keys">Controles</string>
+    <string name="menu_cheats">Cheats</string>
+    <string name="menu_settings">Ajustes</string>
     <string name="menu_exit">Salir del juego</string>
+
+    <!-- Cheats -->
+    <string name="cheats_title">Cheats</string>
+    <string name="cheats_subtitle">Códigos GameShark que se aplican al jugar. Se activan al volver al juego.</string>
+    <string name="cheats_empty">Todavía no hay cheats para este juego. Añade uno con su código.</string>
+    <string name="cheats_add">+ Añadir cheat</string>
+    <string name="cheat_state_on">Activo</string>
+    <string name="cheat_state_off">Inactivo</string>
+    <string name="cheat_opt_enable">Activar</string>
+    <string name="cheat_opt_disable">Desactivar</string>
+    <string name="cheat_opt_edit">Editar</string>
+    <string name="cheat_opt_delete">Borrar</string>
+    <string name="cheat_dialog_add_title">Nuevo cheat</string>
+    <string name="cheat_dialog_edit_title">Editar cheat</string>
+    <string name="cheat_name_hint">Nombre (p. ej. 60 FPS)</string>
+    <string name="cheat_code_hint">Código (una línea por dirección, p. ej. AAAAAAAA VVVV)</string>
+    <string name="cheat_default_name">Cheat</string>
+    <string name="cheat_save">Guardar</string>
+    <string name="cheat_cancel">Cancelar</string>
+    <string name="cheat_code_required">Escribe el código del cheat.</string>
+
+    <!-- Accesos directos -->
+    <string name="row_shortcuts">Accesos directos</string>
+    <string name="section_shortcuts_label">Apps y accesos directos</string>
+    <string name="action_add_app">Accesos directos</string>
+    <string name="action_add_app_sub">Añade una app instalada</string>
+    <string name="card_app">App</string>
+    <string name="apps_none">No se encontraron apps instaladas.</string>
+    <string name="app_not_found">No se pudo abrir %1$s (¿desinstalada?)</string>
+    <string name="shortcut_remove_title">Quitar acceso directo</string>
+    <string name="shortcut_remove_msg">¿Quitar %1$s de la biblioteca?</string>
+    <string name="shortcut_remove">Quitar</string>
+
+    <!-- Mapeo táctil -->
+    <string name="action_touch">Mapeo táctil</string>
+    <string name="action_touch_sub">Teclas → toques en pantalla</string>
+    <string name="touch_title">Mapeo táctil</string>
+    <string name="touch_service_active">Servicio activo ✓</string>
+    <string name="touch_service_inactive">Servicio inactivo — actívalo en Ajustes → Accesibilidad</string>
+    <string name="touch_service_desc">Convierte teclas del teclado o mando en toques de pantalla para jugar juegos táctiles (p. ej. Geometry Dash).</string>
+    <string name="touch_col_button">Botón</string>
+    <string name="touch_col_keyboard">Teclado</string>
+    <string name="touch_col_gamepad">Mando / D-pad</string>
+    <string name="touch_add">+ Añadir botón</string>
+    <string name="touch_edit_positions">Editar posiciones</string>
+    <string name="touch_empty">Sin botones. Añade uno y asígnale una tecla y una posición.</string>
+    <string name="touch_default_name">Botón %1$d</string>
+    <string name="touch_meta">%1$s · %2$d%%, %3$d%%</string>
+    <string name="touch_type_tap">Toque</string>
+    <string name="touch_type_hold">Mantener</string>
+    <string name="touch_rename">Renombrar</string>
+    <string name="touch_make_tap">Cambiar a toque</string>
+    <string name="touch_make_hold">Cambiar a mantener</string>
+    <string name="touch_delete">Borrar</string>
+    <string name="touch_overlay_on">Botones en pantalla: Sí</string>
+    <string name="touch_overlay_off">Botones en pantalla: No</string>
+    <string name="touch_editor_empty">Primero crea botones en Mapeo táctil.</string>
+    <string name="touch_editor_hint">Flechas: mover · R1/L1/Tab: cambiar botón · OK/ATRÁS: guardar</string>
+    <string name="touch_editor_hint_single">Flechas: mover · OK/ATRÁS: guardar</string>
+    <string name="touch_edit_position">Editar posición</string>
+    <string name="touch_subtitle">Botones que convierten una tecla en un toque en pantalla, para juegos táctiles.</string>
+
+    <!-- Conf. controles (pantalla unificada) -->
+    <string name="action_controls">Controles</string>
+    <string name="action_controls_sub">Teclas, mando, atajos y mapeo táctil</string>
+    <string name="controls_title">Controles</string>
+    <string name="controls_subtitle">Un mando tradicional funciona sin configurar nada. Aquí ajustas teclado y Player 2.</string>
+    <string name="controls_p1">Player 1</string>
+    <string name="controls_p2">Player 2</string>
+    <string name="controls_col_gamepad">Mando</string>
 
     <!-- Sección General -->
     <string name="action_general">General</string>

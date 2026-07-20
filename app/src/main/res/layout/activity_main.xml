@@ -9,7 +9,7 @@
     android:paddingLeft="52dp"
     android:paddingTop="40dp"
     android:paddingRight="52dp"
-    android:paddingBottom="28dp"
+    android:paddingBottom="20dp"
     tools:context=".MainActivity">
 
     <!-- Header -->
@@ -18,7 +18,7 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:gravity="center_vertical"
-        android:layout_marginBottom="28dp">
+        android:layout_marginBottom="24dp">
 
         <TextView
             android:layout_width="wrap_content"
@@ -59,16 +59,16 @@
             android:fontFamily="sans-serif" />
     </LinearLayout>
 
-    <!-- Body: nav rail + content grid -->
+    <!-- Body: nav rail + secciones apiladas -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
         android:orientation="horizontal">
 
-        <!-- Nav rail -->
+        <!-- Nav rail (refleja la sección activa) -->
         <LinearLayout
-            android:layout_width="210dp"
+            android:layout_width="200dp"
             android:layout_height="match_parent"
             android:orientation="vertical"
             android:paddingEnd="24dp">
@@ -107,33 +107,78 @@
                 android:clickable="true" />
         </LinearLayout>
 
-        <!-- Content -->
-        <LinearLayout
+        <!-- Secciones apiladas con scroll vertical -->
+        <androidx.core.widget.NestedScrollView
+            android:id="@+id/scroll"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:orientation="vertical">
+            android:clipToPadding="false"
+            android:paddingBottom="40dp"
+            android:scrollbars="none">
 
-            <TextView
-                android:id="@+id/txt_section"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="@color/text_muted"
-                android:textSize="12sp"
-                android:fontFamily="sans-serif-medium"
-                android:textAllCaps="true"
-                android:letterSpacing="0.1"
-                android:layout_marginStart="6dp"
-                android:layout_marginBottom="14dp" />
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/grid"
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
-                android:clipToPadding="false"
-                android:paddingBottom="16dp"
-                android:scrollbars="none" />
-        </LinearLayout>
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <!-- Sección Biblioteca -->
+                <LinearLayout
+                    android:id="@+id/sec_games"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_marginBottom="56dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/section_games_label"
+                        android:textColor="@color/text_muted"
+                        android:textSize="12sp"
+                        android:fontFamily="sans-serif-medium"
+                        android:textAllCaps="true"
+                        android:letterSpacing="0.1"
+                        android:layout_marginStart="6dp"
+                        android:layout_marginBottom="14dp" />
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/grid_games"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:nestedScrollingEnabled="false"
+                        android:clipToPadding="false"
+                        android:scrollbars="none" />
+                </LinearLayout>
+
+                <!-- Sección Ajustes -->
+                <LinearLayout
+                    android:id="@+id/sec_settings"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/section_settings_label"
+                        android:textColor="@color/text_muted"
+                        android:textSize="12sp"
+                        android:fontFamily="sans-serif-medium"
+                        android:textAllCaps="true"
+                        android:letterSpacing="0.1"
+                        android:layout_marginStart="6dp"
+                        android:layout_marginBottom="14dp" />
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/grid_settings"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:nestedScrollingEnabled="false"
+                        android:clipToPadding="false"
+                        android:scrollbars="none" />
+                </LinearLayout>
+            </LinearLayout>
+        </androidx.core.widget.NestedScrollView>
     </LinearLayout>
 </LinearLayout>

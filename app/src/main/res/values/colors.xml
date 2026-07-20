@@ -1,22 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- ===== AMOLED base ===== -->
-    <color name="amoled_black">#000000</color>
-    <color name="surface_1">#0A0A0C</color>
-    <color name="surface_2">#111114</color>
-    <color name="surface_3">#17171B</color>
-    <color name="stroke_subtle">#1C1C22</color>
-    <color name="stroke_strong">#2A2A33</color>
+    <!-- ===== Base tonal (rampa gris-tonal, no negro puro — estilo Material/tonal) ===== -->
+    <color name="amoled_black">#0D0E10</color>
+    <color name="surface_1">#131416</color>
+    <color name="surface_2">#1A1C1E</color>
+    <color name="surface_3">#1E2022</color>
+    <color name="stroke_subtle">#26282E</color>
+    <color name="stroke_strong">#34363C</color>
 
     <!-- ===== Texto ===== -->
-    <color name="text_primary">#F4F4F6</color>
-    <color name="text_secondary">#9A9AA5</color>
-    <color name="text_muted">#5E5E68</color>
+    <color name="text_primary">#E6E6EA</color>
+    <color name="text_secondary">#A6A8B4</color>
+    <color name="text_muted">#6C6E79</color>
 
-    <!-- ===== Acento (violeta/índigo eléctrico) ===== -->
+    <!-- ===== Containers (tonal plano; profundidad por luminancia, no por gradiente) ===== -->
+    <color name="card_top">#202228</color>
+    <color name="card_bottom">#17181C</color>
+    <color name="card_stroke">#2A2C33</color>
+    <color name="card_focus_top">#241E42</color>
+    <color name="card_focus_bottom">#181430</color>
+    <color name="chip_top">#23232E</color>
+    <color name="chip_bottom">#191920</color>
+
+    <!-- ===== Acento (violeta) ===== -->
     <color name="accent">#7C5CFF</color>
     <color name="accent_dim">#5B45C7</color>
-    <color name="accent_soft">#231C46</color>
+    <color name="accent_soft">#201A3C</color>
     <color name="danger">#FF5A5A</color>
     <color name="danger_soft">#2A1618</color>
 

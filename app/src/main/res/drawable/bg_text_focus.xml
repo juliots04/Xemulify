@@ -1,22 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!-- Foco muy sutil para textos/zonas enfocables (sin borde ni acento: deliberadamente discreto). -->
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
-    <!-- Solo un realce muy sutil al enfocar (sin borde ni color llamativo) -->
     <item android:state_focused="true">
         <shape android:shape="rectangle">
-            <solid android:color="#16161C" />
-            <corners android:radius="10dp" />
+            <solid android:color="#242630" />
+            <corners android:radius="12dp" />
         </shape>
     </item>
     <item android:state_pressed="true">
         <shape android:shape="rectangle">
-            <solid android:color="#16161C" />
-            <corners android:radius="10dp" />
+            <solid android:color="#242630" />
+            <corners android:radius="12dp" />
         </shape>
     </item>
     <item>
         <shape android:shape="rectangle">
             <solid android:color="#00000000" />
-            <corners android:radius="10dp" />
+            <corners android:radius="12dp" />
         </shape>
     </item>
 </selector>

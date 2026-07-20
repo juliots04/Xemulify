@@ -1,60 +1,78 @@
 package com.example.xemulify.input
 
 import android.content.Context
+import android.view.KeyEvent
 
 /**
- * Guarda y recupera la asignación tecla-de-teclado → botón de PS1.
+ * Guarda la asignación tecla → botón de PS1, ahora por jugador (Player 1 / Player 2).
  *
- * Se persiste en SharedPreferences: por cada [PsxButton] se almacena el keycode físico
- * (un `KeyEvent.KEYCODE_*`) que el usuario le asignó. Si no hay valor guardado, se usa
- * [PsxButton.defaultKeyCode].
+ * Cada columna de la pantalla de controles guarda un keycode por [PsxButton]:
+ *  - P1 (por defecto teclas de teclado: W, C, flechas…).
+ *  - P2 (por defecto sin asignar).
+ *
+ * Además, [buildGamepadMap] expone el mapa de botones estándar de mando (BUTTON_A, DPAD_*…),
+ * que el traductor deja SIEMPRE activo para que un mando tradicional funcione sin configurar
+ * nada; un 2º mando físico se rutea a P2 por su número de control.
  */
 class KeyMappingStore(context: Context) {
 
     private val prefs = context.applicationContext
         .getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
 
-    /** Keycode de teclado asignado a [button]. */
-    fun keyboardKeyCodeFor(button: PsxButton): Int =
-        prefs.getInt(prefKeyboardKey(button), button.defaultKeyboardKeyCode)
+    fun p1KeyCodeFor(button: PsxButton): Int =
+        prefs.getInt(pref("p1", button), button.defaultKeyboardKeyCode)
 
-    /** Keycode de mando/D-pad asignado a [button]. */
+    fun p2KeyCodeFor(button: PsxButton): Int =
+        prefs.getInt(pref("p2", button), KeyEvent.KEYCODE_UNKNOWN)
+
+    /** Botón de mando/D-pad asignado (por defecto el estándar → mando tradicional plug-and-play). */
     fun gamepadKeyCodeFor(button: PsxButton): Int =
-        prefs.getInt(prefGamepadKey(button), button.defaultGamepadKeyCode)
+        prefs.getInt(pref("gp", button), button.defaultGamepadKeyCode)
 
-    /** Asigna [keyCode] al teclado para [button]. */
-    fun assignKeyboard(button: PsxButton, keyCode: Int) {
-        prefs.edit().putInt(prefKeyboardKey(button), keyCode).apply()
-    }
+    fun assignP1(button: PsxButton, keyCode: Int) =
+        prefs.edit().putInt(pref("p1", button), keyCode).apply()
 
-    /** Asigna [keyCode] al mando para [button]. */
-    fun assignGamepad(button: PsxButton, keyCode: Int) {
-        prefs.edit().putInt(prefGamepadKey(button), keyCode).apply()
-    }
+    fun assignP2(button: PsxButton, keyCode: Int) =
+        prefs.edit().putInt(pref("p2", button), keyCode).apply()
 
-    /** Restablece todas las teclas a sus valores por defecto. */
-    fun resetToDefaults() {
-        prefs.edit().clear().apply()
-    }
+    fun assignGamepad(button: PsxButton, keyCode: Int) =
+        prefs.edit().putInt(pref("gp", button), keyCode).apply()
 
-    /**
-     * Construye el mapa inverso (keycode físico → botón) que usa el emulador en tiempo real.
-     * Mapea tanto el código de teclado como el de mando al mismo botón de PS1.
-     */
-    fun buildReverseMap(): Map<Int, PsxButton> {
+    fun resetToDefaults() = prefs.edit().clear().apply()
+
+    /** Teclas de P1 → botón (para el puerto 0). Ignora las no asignadas. */
+    fun buildP1Map(): Map<Int, PsxButton> {
         val map = HashMap<Int, PsxButton>()
         for (button in PsxButton.values()) {
-            map[keyboardKeyCodeFor(button)] = button
-            map[gamepadKeyCodeFor(button)] = button
+            val code = p1KeyCodeFor(button)
+            if (code != KeyEvent.KEYCODE_UNKNOWN) map[code] = button
         }
         return map
     }
 
-    private fun prefKeyboardKey(button: PsxButton) = "key_kbd_${button.id}"
-    private fun prefGamepadKey(button: PsxButton) = "key_gpd_${button.id}"
+    /** Teclas de P2 → botón (para el puerto 1). Ignora las no asignadas. */
+    fun buildP2Map(): Map<Int, PsxButton> {
+        val map = HashMap<Int, PsxButton>()
+        for (button in PsxButton.values()) {
+            val code = p2KeyCodeFor(button)
+            if (code != KeyEvent.KEYCODE_UNKNOWN) map[code] = button
+        }
+        return map
+    }
+
+    /** Botones de mando → botón (columna Mando, editable; default = estándar plug-and-play). */
+    fun buildGamepadMap(): Map<Int, PsxButton> {
+        val map = HashMap<Int, PsxButton>()
+        for (button in PsxButton.values()) {
+            val code = gamepadKeyCodeFor(button)
+            if (code != KeyEvent.KEYCODE_UNKNOWN) map[code] = button
+        }
+        return map
+    }
+
+    private fun pref(player: String, button: PsxButton) = "key_${player}_${button.id}"
 
     companion object {
         private const val PREFS_NAME = "xemulify_input_map"
     }
 }
-

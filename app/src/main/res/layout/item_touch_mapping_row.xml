@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:gravity="center_vertical"
+    android:background="@drawable/bg_key_row"
+    android:layout_marginBottom="2dp"
+    android:paddingTop="8dp"
+    android:paddingBottom="8dp"
+    android:paddingStart="0dp"
+    android:paddingEnd="0dp">
+
+    <!-- Zona nombre (icono + nombre + chip de estado). Tocable: abre opciones. -->
+    <LinearLayout
+        android:id="@+id/box_name"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1.2"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:background="@drawable/bg_text_focus"
+        android:paddingTop="6dp"
+        android:paddingBottom="6dp"
+        android:paddingStart="6dp"
+        android:paddingEnd="6dp"
+        android:focusable="true"
+        android:clickable="true">
+
+        <ImageView
+            android:layout_width="38dp"
+            android:layout_height="38dp"
+            android:layout_marginEnd="12dp"
+            android:background="@drawable/bg_header_icon"
+            android:padding="8dp"
+            android:src="@drawable/ic_touch"
+            android:scaleType="fitCenter" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/txt_map_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/text_primary"
+                android:textSize="16sp"
+                android:fontFamily="sans-serif-medium" />
+
+            <TextView
+                android:id="@+id/txt_map_meta"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:background="@drawable/bg_chip"
+                android:paddingLeft="9dp"
+                android:paddingRight="9dp"
+                android:paddingTop="3dp"
+                android:paddingBottom="3dp"
+                android:textColor="@color/text_secondary"
+                android:textSize="11sp"
+                android:fontFamily="sans-serif-medium" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btn_map_keyboard"
+        android:layout_width="0dp"
+        android:layout_height="46dp"
+        android:layout_weight="1"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:background="@drawable/bg_key_mapping_btn"
+        android:textColor="@color/text_primary"
+        android:textSize="14sp"
+        android:fontFamily="sans-serif-medium"
+        android:textAllCaps="false"
+        android:focusable="true" />
+
+    <Button
+        android:id="@+id/btn_map_gamepad"
+        android:layout_width="0dp"
+        android:layout_height="46dp"
+        android:layout_weight="1"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="6dp"
+        android:background="@drawable/bg_key_mapping_btn"
+        android:textColor="@color/text_primary"
+        android:textSize="14sp"
+        android:fontFamily="sans-serif-medium"
+        android:textAllCaps="false"
+        android:focusable="true" />
+</LinearLayout>

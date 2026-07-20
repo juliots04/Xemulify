@@ -13,3 +13,9 @@
 .externalNativeBuild
 .cxx
 local.properties
+
+# Artefactos y caches locales
+/release/
+.kotlin/
+*.apk
+"/CTR MODS INSTALADOS/"
