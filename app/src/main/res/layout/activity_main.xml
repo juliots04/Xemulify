@@ -50,13 +50,39 @@
             android:layout_height="1dp"
             android:layout_weight="1" />
 
-        <TextView
-            android:id="@+id/txt_status"
+        <!-- Badges retro de jugadores conectados (P1, P2...) -->
+        <LinearLayout
+            android:id="@+id/layout_player_badges"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@color/text_secondary"
-            android:textSize="13sp"
-            android:fontFamily="sans-serif" />
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginEnd="10dp" />
+
+        <!-- Botón Vincular nuevo mando -->
+        <LinearLayout
+            android:id="@+id/btn_controllers_hub"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:background="@drawable/bg_btn_add_player"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            android:paddingTop="8dp"
+            android:paddingBottom="8dp"
+            android:clickable="true"
+            android:focusable="true">
+
+            <TextView
+                android:id="@+id/txt_controllers_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/btn_add_player"
+                android:textColor="@color/text_primary"
+                android:textSize="13sp"
+                android:fontFamily="sans-serif-medium" />
+        </LinearLayout>
     </LinearLayout>
 
     <!-- Body: nav rail + secciones apiladas -->
@@ -74,6 +100,25 @@
             android:paddingEnd="24dp">
 
             <TextView
+                android:id="@+id/nav_store"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/row_store"
+                android:textColor="@color/text_secondary"
+                android:textSize="17sp"
+                android:fontFamily="sans-serif-medium"
+                android:background="@drawable/bg_nav_item"
+                android:paddingLeft="18dp"
+                android:paddingRight="18dp"
+                android:paddingTop="13dp"
+                android:paddingBottom="13dp"
+                android:layout_marginBottom="8dp"
+                android:focusable="true"
+                android:clickable="true"
+                android:nextFocusDown="@+id/nav_games"
+                android:nextFocusRight="@+id/grid_store" />
+
+            <TextView
                 android:id="@+id/nav_games"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -88,7 +133,30 @@
                 android:paddingBottom="13dp"
                 android:layout_marginBottom="8dp"
                 android:focusable="true"
-                android:clickable="true" />
+                android:clickable="true"
+                android:nextFocusUp="@+id/nav_store"
+                android:nextFocusDown="@+id/nav_shortcuts"
+                android:nextFocusRight="@+id/grid_games" />
+
+            <TextView
+                android:id="@+id/nav_shortcuts"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/row_shortcuts"
+                android:textColor="@color/text_secondary"
+                android:textSize="17sp"
+                android:fontFamily="sans-serif-medium"
+                android:background="@drawable/bg_nav_item"
+                android:paddingLeft="18dp"
+                android:paddingRight="18dp"
+                android:paddingTop="13dp"
+                android:paddingBottom="13dp"
+                android:layout_marginBottom="8dp"
+                android:focusable="true"
+                android:clickable="true"
+                android:nextFocusUp="@+id/nav_games"
+                android:nextFocusDown="@+id/nav_settings"
+                android:nextFocusRight="@+id/grid_shortcuts" />
 
             <TextView
                 android:id="@+id/nav_settings"
@@ -104,7 +172,9 @@
                 android:paddingTop="13dp"
                 android:paddingBottom="13dp"
                 android:focusable="true"
-                android:clickable="true" />
+                android:clickable="true"
+                android:nextFocusUp="@+id/nav_shortcuts"
+                android:nextFocusRight="@+id/grid_settings" />
         </LinearLayout>
 
         <!-- Secciones apiladas con scroll vertical -->
@@ -121,6 +191,36 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
+
+                <!-- Sección Tienda -->
+                <LinearLayout
+                    android:id="@+id/sec_store"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_marginBottom="56dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/section_store_label"
+                        android:textColor="@color/text_muted"
+                        android:textSize="12sp"
+                        android:fontFamily="sans-serif-medium"
+                        android:textAllCaps="true"
+                        android:letterSpacing="0.1"
+                        android:layout_marginStart="6dp"
+                        android:layout_marginBottom="14dp" />
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/grid_store"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:nestedScrollingEnabled="false"
+                        android:clipToPadding="false"
+                        android:scrollbars="none"
+                        android:nextFocusUp="@+id/btn_controllers_hub" />
+                </LinearLayout>
 
                 <!-- Sección Biblioteca -->
                 <LinearLayout
@@ -148,7 +248,38 @@
                         android:layout_height="wrap_content"
                         android:nestedScrollingEnabled="false"
                         android:clipToPadding="false"
-                        android:scrollbars="none" />
+                        android:scrollbars="none"
+                        android:nextFocusUp="@+id/btn_controllers_hub" />
+                </LinearLayout>
+
+                <!-- Sección Accesos Directos -->
+                <LinearLayout
+                    android:id="@+id/sec_shortcuts"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_marginBottom="56dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/section_shortcuts_label"
+                        android:textColor="@color/text_muted"
+                        android:textSize="12sp"
+                        android:fontFamily="sans-serif-medium"
+                        android:textAllCaps="true"
+                        android:letterSpacing="0.1"
+                        android:layout_marginStart="6dp"
+                        android:layout_marginBottom="14dp" />
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/grid_shortcuts"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:nestedScrollingEnabled="false"
+                        android:clipToPadding="false"
+                        android:scrollbars="none"
+                        android:nextFocusUp="@+id/btn_controllers_hub" />
                 </LinearLayout>
 
                 <!-- Sección Ajustes -->
@@ -176,7 +307,8 @@
                         android:layout_height="wrap_content"
                         android:nestedScrollingEnabled="false"
                         android:clipToPadding="false"
-                        android:scrollbars="none" />
+                        android:scrollbars="none"
+                        android:nextFocusUp="@+id/btn_controllers_hub" />
                 </LinearLayout>
             </LinearLayout>
         </androidx.core.widget.NestedScrollView>

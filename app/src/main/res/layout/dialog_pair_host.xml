@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:background="#15151C"
+    android:padding="32dp">
+
+    <!-- Título -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Vincular con tu Celular"
+        android:textColor="@color/text_primary"
+        android:textSize="26sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/txt_dialog_subtitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="Abre Xemulify en tu teléfono y selecciona 'Usar como Mando'"
+        android:textColor="@color/text_secondary"
+        android:textSize="14sp"
+        android:gravity="center" />
+
+    <!-- Contenedor central: PIN a la izquierda, QR a la derecha -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_marginTop="32dp"
+        android:layout_marginBottom="16dp">
+
+        <!-- Columna Código PIN -->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:padding="16dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="INGRESA EL CÓDIGO PIN EN TU TELÉFONO"
+                android:textColor="@color/text_muted"
+                android:textSize="12sp"
+                android:letterSpacing="0.06"
+                android:textStyle="bold"
+                android:gravity="center" />
+
+            <!-- Contenedor del PIN grande -->
+            <TextView
+                android:id="@+id/txt_pin_code"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="K9X2B7"
+                android:textColor="@color/text_primary"
+                android:textSize="38sp"
+                android:textStyle="bold"
+                android:fontFamily="monospace"
+                android:letterSpacing="0.25"
+                android:background="@drawable/bg_key_row"
+                android:paddingStart="26dp"
+                android:paddingEnd="26dp"
+                android:paddingTop="12dp"
+                android:paddingBottom="12dp" />
+
+        </LinearLayout>
+
+        <!-- Separador vertical -->
+        <View
+            android:layout_width="1dp"
+            android:layout_height="180dp"
+            android:background="@color/stroke_subtle" />
+
+        <!-- Columna Código QR -->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:padding="16dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="ESCANEA EL CÓDIGO QR CON TU CÁMARA"
+                android:textColor="@color/text_muted"
+                android:textSize="12sp"
+                android:letterSpacing="0.06"
+                android:textStyle="bold"
+                android:gravity="center" />
+
+            <!-- Código QR de alto contraste negro sobre blanco -->
+            <ImageView
+                android:id="@+id/img_qr_code"
+                android:layout_width="165dp"
+                android:layout_height="165dp"
+                android:layout_marginTop="14dp"
+                android:background="#FFFFFF"
+                android:padding="8dp"
+                android:scaleType="fitCenter" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

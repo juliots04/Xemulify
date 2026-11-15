@@ -1,6 +1,7 @@
 package com.example.xemulify.emulator
 
 import android.app.AlertDialog
+import android.app.Dialog
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
@@ -19,6 +20,7 @@ import com.example.xemulify.cheats.CheatStore
 import com.example.xemulify.core.CoreManager
 import com.example.xemulify.input.KeyMappingStore
 import com.example.xemulify.input.PsxInputTranslator
+import com.example.xemulify.remote.RemoteControllerManager
 import com.example.xemulify.settings.ControlsActivity
 import com.example.xemulify.settings.GeneralSettingsActivity
 import com.example.xemulify.settings.SettingsStore
@@ -161,10 +163,84 @@ class GameActivity : FragmentActivity() {
             // Refleja cambios hechos en la pantalla de trucos sin reiniciar el juego.
             if (coreReady) applyCheats()
         }
+
+        var menuStickX = 0
+        var menuStickY = 0
+
+        // Conectar mandos remotos (smartphones por Wi-Fi) al emulador
+        RemoteControllerManager.inputSink = object : RemoteControllerManager.InputSink {
+            override fun onRemoteButtonChanged(playerSlot: Int, button: Int, isPressed: Boolean) {
+                if (!started) return
+                handler.post {
+                    if (menuOpen) {
+                        if (isPressed) {
+                            val dpadKey = when (button) {
+                                KeyEvent.KEYCODE_DPAD_UP -> KeyEvent.KEYCODE_DPAD_UP
+                                KeyEvent.KEYCODE_DPAD_DOWN -> KeyEvent.KEYCODE_DPAD_DOWN
+                                KeyEvent.KEYCODE_DPAD_LEFT -> KeyEvent.KEYCODE_DPAD_LEFT
+                                KeyEvent.KEYCODE_DPAD_RIGHT -> KeyEvent.KEYCODE_DPAD_RIGHT
+                                KeyEvent.KEYCODE_BUTTON_A, KeyEvent.KEYCODE_BUTTON_X, KeyEvent.KEYCODE_BUTTON_START -> KeyEvent.KEYCODE_DPAD_CENTER
+                                KeyEvent.KEYCODE_BUTTON_B, KeyEvent.KEYCODE_BUTTON_SELECT -> KeyEvent.KEYCODE_BACK
+                                else -> null
+                            }
+                            dpadKey?.let {
+                                dispatchKeyEvent(KeyEvent(KeyEvent.ACTION_DOWN, it))
+                                dispatchKeyEvent(KeyEvent(KeyEvent.ACTION_UP, it))
+                            }
+                        }
+                        return@post
+                    }
+                    if (isMenuKey(button) && isPressed) {
+                        showInGameMenu()
+                    } else {
+                        translator.handleRemoteButton(playerSlot, button, isPressed)
+                    }
+                }
+            }
+
+            override fun onRemoteMotionChanged(playerSlot: Int, axisSource: Int, x: Float, y: Float) {
+                if (!started) return
+                handler.post {
+                    if (menuOpen) {
+                        if (axisSource == 1) {
+                            val threshold = 0.50f
+                            val release = 0.30f
+                            if (x < -threshold && menuStickX != -1) {
+                                menuStickX = -1
+                                dispatchKeyEvent(KeyEvent(KeyEvent.ACTION_DOWN, KeyEvent.KEYCODE_DPAD_LEFT))
+                                dispatchKeyEvent(KeyEvent(KeyEvent.ACTION_UP, KeyEvent.KEYCODE_DPAD_LEFT))
+                            } else if (x > threshold && menuStickX != 1) {
+                                menuStickX = 1
+                                dispatchKeyEvent(KeyEvent(KeyEvent.ACTION_DOWN, KeyEvent.KEYCODE_DPAD_RIGHT))
+                                dispatchKeyEvent(KeyEvent(KeyEvent.ACTION_UP, KeyEvent.KEYCODE_DPAD_RIGHT))
+                            } else if (Math.abs(x) < release) {
+                                menuStickX = 0
+                            }
+
+                            if (y < -threshold && menuStickY != -1) {
+                                menuStickY = -1
+                                dispatchKeyEvent(KeyEvent(KeyEvent.ACTION_DOWN, KeyEvent.KEYCODE_DPAD_UP))
+                                dispatchKeyEvent(KeyEvent(KeyEvent.ACTION_UP, KeyEvent.KEYCODE_DPAD_UP))
+                            } else if (y > threshold && menuStickY != 1) {
+                                menuStickY = 1
+                                dispatchKeyEvent(KeyEvent(KeyEvent.ACTION_DOWN, KeyEvent.KEYCODE_DPAD_DOWN))
+                                dispatchKeyEvent(KeyEvent(KeyEvent.ACTION_UP, KeyEvent.KEYCODE_DPAD_DOWN))
+                            } else if (Math.abs(y) < release) {
+                                menuStickY = 0
+                            }
+                        }
+                        return@post
+                    }
+                    translator.handleRemoteMotion(playerSlot, axisSource, x, y)
+                }
+            }
+        }
     }
 
     override fun onPause() {
+        RemoteControllerManager.inputSink = null
         if (started) {
+            translator.releaseAll()
             handler.removeCallbacks(autosaveRunnable)
             setFastForward(false)
             persistSram()
@@ -268,6 +344,7 @@ class GameActivity : FragmentActivity() {
         val options = arrayOf(
             getString(R.string.menu_save_state),
             getString(R.string.menu_load_state),
+            "Mandos Remotos (PIN / QR)",
             getString(R.string.menu_settings),
             getString(R.string.menu_exit),
         )
@@ -277,14 +354,98 @@ class GameActivity : FragmentActivity() {
                 when (which) {
                     0 -> showSlotDialog(saving = true)
                     1 -> showSlotDialog(saving = false)
-                    2 -> showSettingsSubmenu()
-                    3 -> finish()
+                    2 -> showPairingDialog()
+                    3 -> showSettingsSubmenu()
+                    4 -> finish()
                 }
             }
             .setOnDismissListener { menuOpen = false }
             .create()
         dialog.dismissOnEscape()
         dialog.show()
+    }
+
+    private fun showPairingDialog() {
+        val server = RemoteControllerManager.server ?: RemoteControllerManager.startServer(this)
+        val dialogView = layoutInflater.inflate(R.layout.dialog_pair_host, null)
+
+        val txtPinCode = dialogView.findViewById<android.widget.TextView>(R.id.txt_pin_code)
+        val imgQrCode = dialogView.findViewById<android.widget.ImageView>(R.id.img_qr_code)
+
+        val localIp = RemoteControllerManager.nsdHelper?.getLocalIpAddress() ?: "127.0.0.1"
+
+        fun refreshDialogUI() {
+            txtPinCode.text = server.currentPin
+            val qrPayload = com.example.xemulify.remote.RemoteProtocol.makeQrPayload(
+                localIp, server.port, server.currentPin, android.os.Build.MODEL
+            )
+            val qrBitmap = com.example.xemulify.remote.QrHelper.generateQrBitmap(qrPayload, 300, 300)
+            imgQrCode.setImageBitmap(qrBitmap)
+        }
+
+        refreshDialogUI()
+
+        val dialog = Dialog(this, R.style.Theme_Xemulify_FullscreenDialog)
+        dialog.window?.apply {
+            setBackgroundDrawable(android.graphics.drawable.ColorDrawable(0xFF15151C.toInt()))
+            clearFlags(android.view.WindowManager.LayoutParams.FLAG_DIM_BEHIND)
+            addFlags(android.view.WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
+            statusBarColor = 0xFF15151C.toInt()
+            navigationBarColor = 0xFF15151C.toInt()
+        }
+        dialog.setContentView(dialogView)
+
+        // Auto-regeneración del PIN y QR cada 30 segundos
+        val autoRefreshHandler = Handler(Looper.getMainLooper())
+        val autoRefreshRunnable = object : Runnable {
+            override fun run() {
+                if (dialog.isShowing) {
+                    server.regeneratePin()
+                    refreshDialogUI()
+                    autoRefreshHandler.postDelayed(this, 30_000L)
+                }
+            }
+        }
+        autoRefreshHandler.postDelayed(autoRefreshRunnable, 30_000L)
+
+        // Escucha si un celular se conecta: cierra automáticamente el diálogo
+        val connectionListener = object : RemoteControllerManager.ConnectionListener {
+            override fun onClientConnected(session: com.example.xemulify.remote.RemoteServer.ClientSession) {
+                runOnUiThread {
+                    android.widget.Toast.makeText(
+                        this@GameActivity,
+                        "¡Mando conectado! ${session.deviceName}",
+                        android.widget.Toast.LENGTH_SHORT
+                    ).show()
+                    if (dialog.isShowing) {
+                        dialog.dismiss()
+                    }
+                }
+            }
+        }
+        RemoteControllerManager.addConnectionListener(connectionListener)
+
+        dialog.setOnDismissListener {
+            menuOpen = false
+            autoRefreshHandler.removeCallbacks(autoRefreshRunnable)
+            RemoteControllerManager.removeConnectionListener(connectionListener)
+        }
+
+        dialog.show()
+
+        // Garantizar que la pantalla ocupe el 100% sin márgenes ni bordes flotantes
+        dialog.window?.let { window ->
+            window.setLayout(android.view.ViewGroup.LayoutParams.MATCH_PARENT, android.view.ViewGroup.LayoutParams.MATCH_PARENT)
+            window.decorView.setPadding(0, 0, 0, 0)
+            window.decorView.setBackgroundColor(0xFF15151C.toInt())
+        }
+
+        dialog.setOnShowListener {
+            dialog.window?.let { window ->
+                window.setLayout(android.view.ViewGroup.LayoutParams.MATCH_PARENT, android.view.ViewGroup.LayoutParams.MATCH_PARENT)
+                window.decorView.setPadding(0, 0, 0, 0)
+            }
+        }
     }
 
     /** Submenú "Ajustes": controles (primero), ajustes generales y cheats. */

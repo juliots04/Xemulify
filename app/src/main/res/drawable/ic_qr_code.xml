@@ -1,0 +1,33 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="24dp"
+    android:height="24dp"
+    android:viewportWidth="24"
+    android:viewportHeight="24">
+
+    <!-- Patrón de esquina superior izquierda -->
+    <path
+        android:fillColor="#E6E6EA"
+        android:pathData="M2,2 h7 v7 H2 z M3.8,3.8 v3.4 h3.4 V3.8 z M4.8,4.8 h1.4 v1.4 H4.8 z" />
+
+    <!-- Patrón de esquina superior derecha -->
+    <path
+        android:fillColor="#E6E6EA"
+        android:pathData="M15,2 h7 v7 h-7 z M16.8,3.8 v3.4 h3.4 V3.8 z M17.8,4.8 h1.4 v1.4 H17.8 z" />
+
+    <!-- Patrón de esquina inferior izquierda -->
+    <path
+        android:fillColor="#E6E6EA"
+        android:pathData="M2,15 h7 v7 H2 z M3.8,16.8 v3.4 h3.4 v-3.4 z M4.8,17.8 h1.4 v1.4 H4.8 z" />
+
+    <!-- Píxeles de sincronización y datos limpios -->
+    <!-- Línea de sincronización horizontal y vertical -->
+    <path
+        android:fillColor="#E6E6EA"
+        android:pathData="M10,4.8 h1.5 v1.4 H10 z M12.5,4.8 h1.5 v1.4 H12.5 z M4.8,10 h1.4 v1.5 H4.8 z M4.8,12.5 h1.4 v1.5 H4.8 z" />
+
+    <!-- Bloques de datos centrales y cuadrantes -->
+    <path
+        android:fillColor="#E6E6EA"
+        android:pathData="M10,10 h4 v1.5 h-4 z M10,12.5 h1.5 v4 H10 z M12.5,14 h3 v1.5 h-3 z M17,11 h4 v1.5 h-4 z M19,13.5 h2 v2 h-2 z M14,17 h2 v2 h-2 z M11,18 h2 v3 h-2 z M14,20 h3 v1.5 h-3 z M18.5,17 h3 v4.5 h-3 z M18.5,18.5 h1.5 v1.5 H18.5 z" />
+
+</vector>

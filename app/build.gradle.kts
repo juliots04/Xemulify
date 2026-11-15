@@ -54,4 +54,7 @@ dependencies {
     implementation(libs.glide)
     // Motor de emulación (embebe el core libretro de PS1).
     implementation(libs.libretrodroid)
+    // Códigos QR para vinculación rápida del mando
+    implementation(libs.zxing.core)
+    implementation(libs.zxing.embedded)
 }

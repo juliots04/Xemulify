@@ -1,0 +1,72 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="72dp"
+    android:height="44dp"
+    android:viewportWidth="72"
+    android:viewportHeight="44">
+
+    <!-- Chasis exterior del smartphone en horizontal (Landscape) -->
+    <path
+        android:fillColor="#242630"
+        android:pathData="M8,4 h56 c3.3,0 6,2.7 6,6 v24 c0,3.3 -2.7,6 -6,6 H8 c-3.3,0 -6,-2.7 -6,-6 V10 c0,-3.3 2.7,-6 6,-6 z" />
+
+    <!-- Bisel metálico sutil -->
+    <path
+        android:strokeColor="#3A3D4D"
+        android:strokeWidth="1"
+        android:fillColor="#00000000"
+        android:pathData="M8,4 h56 c3.3,0 6,2.7 6,6 v24 c0,3.3 -2.7,6 -6,6 H8 c-3.3,0 -6,-2.7 -6,-6 V10 c0,-3.3 2.7,-6 6,-6 z" />
+
+    <!-- Pantalla completa panorámica -->
+    <path
+        android:fillColor="#111216"
+        android:pathData="M12,7 h48 c1.6,0 3,1.4 3,3 v24 c0,1.6 -1.4,3 -3,3 H12 c-1.6,0 -3,-1.4 -3,-3 V10 c0,-1.6 1.4,-3 3,-3 z" />
+
+    <!-- Cámara frontal en el lateral izquierdo -->
+    <path
+        android:fillColor="#4F5263"
+        android:pathData="M6.5,22 m-1.5,0 a1.5,1.5 0,1,0 3,0 a1.5,1.5 0,1,0 -3,0" />
+
+    <!-- Barra inferior táctil (Home gesture) -->
+    <path
+        android:fillColor="#4F5263"
+        android:pathData="M31,34 h10 v1.5 h-10 z" />
+
+    <!-- Controles táctiles en pantalla -->
+    <!-- Cruceta D-Pad izquierda -->
+    <path
+        android:fillColor="#7C5CFF"
+        android:pathData="M18,17 h4 v3 h-4 z M18,24 h4 v3 h-4 z M15,20 h10 v4 H15 z" />
+
+    <!-- Stick analógico izquierdo sutil -->
+    <path
+        android:strokeColor="#3A3D4D"
+        android:strokeWidth="1.2"
+        android:fillColor="#1A1C24"
+        android:pathData="M27,27 m-3.5,0 a3.5,3.5 0,1,0 7,0 a3.5,3.5 0,1,0 -7,0" />
+
+    <!-- Stick analógico derecho sutil -->
+    <path
+        android:strokeColor="#3A3D4D"
+        android:strokeWidth="1.2"
+        android:fillColor="#1A1C24"
+        android:pathData="M45,27 m-3.5,0 a3.5,3.5 0,1,0 7,0 a3.5,3.5 0,1,0 -7,0" />
+
+    <!-- 4 Botones de acción PlayStation derecha -->
+    <!-- Triángulo (Arriba) Verde -->
+    <path
+        android:fillColor="#4ADE80"
+        android:pathData="M54,17 m-1.8,0 a1.8,1.8 0,1,0 3.6,0 a1.8,1.8 0,1,0 -3.6,0" />
+    <!-- Círculo (Derecha) Rojo -->
+    <path
+        android:fillColor="#FF6B6B"
+        android:pathData="M58,21 m-1.8,0 a1.8,1.8 0,1,0 3.6,0 a1.8,1.8 0,1,0 -3.6,0" />
+    <!-- Cruz (Abajo) Azul -->
+    <path
+        android:fillColor="#5AB8FF"
+        android:pathData="M54,25 m-1.8,0 a1.8,1.8 0,1,0 3.6,0 a1.8,1.8 0,1,0 -3.6,0" />
+    <!-- Cuadrado (Izquierda) Rosa -->
+    <path
+        android:fillColor="#F472B6"
+        android:pathData="M50,21 m-1.8,0 a1.8,1.8 0,1,0 3.6,0 a1.8,1.8 0,1,0 -3.6,0" />
+
+</vector>

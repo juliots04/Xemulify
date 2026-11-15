@@ -1,17 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- Igual que bg_key_row: fila plana con realce solo al enfocar. -->
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
     <item android:state_focused="true">
         <shape android:shape="rectangle">
-            <solid android:color="@color/card_focus_top" />
-            <stroke android:width="2dp" android:color="@color/accent" />
+            <solid android:color="#2A2D3A" />
             <corners android:radius="16dp" />
         </shape>
     </item>
     <item android:state_pressed="true">
         <shape android:shape="rectangle">
-            <solid android:color="@color/card_focus_top" />
-            <stroke android:width="2dp" android:color="@color/accent_dim" />
+            <solid android:color="#353A4B" />
             <corners android:radius="16dp" />
         </shape>
     </item>

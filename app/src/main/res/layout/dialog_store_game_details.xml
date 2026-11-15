@@ -1,0 +1,291 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#15151C"
+    android:padding="32dp">
+
+    <!-- Top bar -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:layout_marginBottom="24dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="TIENDA DE JUEGOS · PLAYSTATION"
+            android:textColor="#9B7BFF"
+            android:textSize="12sp"
+            android:fontFamily="sans-serif-bold"
+            android:letterSpacing="0.08" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_weight="1" />
+
+        <TextView
+            android:id="@+id/btn_dialog_close"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="✕ Cerrar"
+            android:textColor="#FFFFFF"
+            android:textSize="13sp"
+            android:fontFamily="sans-serif-medium"
+            android:background="@drawable/bg_button_rounded_close"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            android:paddingTop="7dp"
+            android:paddingBottom="7dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:nextFocusDown="@+id/btn_dialog_action" />
+    </LinearLayout>
+
+    <!-- Main Content: Left cover & Right details -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="horizontal">
+
+        <!-- Left Column: Big Cover & Stats -->
+        <LinearLayout
+            android:layout_width="220dp"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <FrameLayout
+                android:layout_width="220dp"
+                android:layout_height="270dp"
+                android:background="#0A0B10">
+
+                <ImageView
+                    android:id="@+id/img_dialog_cover"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:scaleType="fitCenter"
+                    android:adjustViewBounds="true"
+                    android:padding="6dp"
+                    android:contentDescription="Carátula" />
+            </FrameLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/txt_dialog_stat_size"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Tamaño: 438 MB"
+                    android:textColor="#8E92A8"
+                    android:textSize="11sp"
+                    android:fontFamily="sans-serif" />
+
+                <TextView
+                    android:id="@+id/txt_dialog_stat_year"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="3dp"
+                    android:text="Lanzamiento: 1998"
+                    android:textColor="#8E92A8"
+                    android:textSize="11sp"
+                    android:fontFamily="sans-serif" />
+
+                <TextView
+                    android:id="@+id/txt_dialog_stat_developer"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="3dp"
+                    android:text="Desarrollador: Namco"
+                    android:textColor="#8E92A8"
+                    android:textSize="11sp"
+                    android:fontFamily="sans-serif" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <!-- Right Column: Title, Synopsis, Download Actions -->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:layout_marginStart="32dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/txt_dialog_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Tekken 3"
+                android:textColor="#FFFFFF"
+                android:textSize="26sp"
+                android:textStyle="bold"
+                android:fontFamily="sans-serif-medium" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/txt_dialog_genre"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Lucha 3D"
+                    android:textColor="#9B7BFF"
+                    android:textSize="11sp"
+                    android:fontFamily="sans-serif-medium"
+                    android:background="@drawable/bg_subtle_pill_dark"
+                    android:paddingStart="10dp"
+                    android:paddingEnd="10dp"
+                    android:paddingTop="3dp"
+                    android:paddingBottom="3dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:text="PS1 CHD"
+                    android:textColor="#A0A5BD"
+                    android:textSize="11sp"
+                    android:fontFamily="sans-serif-medium"
+                    android:background="@drawable/bg_subtle_pill_dark"
+                    android:paddingStart="10dp"
+                    android:paddingEnd="10dp"
+                    android:paddingTop="3dp"
+                    android:paddingBottom="3dp" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="16dp"
+                android:background="#242533" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="SINOPSIS / DETALLES"
+                android:textColor="#6C7086"
+                android:textSize="11sp"
+                android:fontFamily="sans-serif-bold"
+                android:letterSpacing="0.08" />
+
+            <androidx.core.widget.NestedScrollView
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:layout_marginTop="6dp">
+
+                <TextView
+                    android:id="@+id/txt_dialog_description"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Descripción detallada del juego..."
+                    android:textColor="#C4C7D8"
+                    android:textSize="14sp"
+                    android:lineSpacingExtra="4dp"
+                    android:fontFamily="sans-serif" />
+            </androidx.core.widget.NestedScrollView>
+
+            <!-- Download Progress section -->
+            <LinearLayout
+                android:id="@+id/layout_dialog_progress"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginBottom="14dp"
+                android:visibility="gone">
+
+                <ProgressBar
+                    android:id="@+id/pb_dialog_progress"
+                    style="?android:attr/progressBarStyleHorizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="8dp"
+                    android:max="100"
+                    android:progressDrawable="@drawable/bg_download_progress" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/txt_dialog_progress_pct"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="45%"
+                        android:textColor="#9B7BFF"
+                        android:textSize="12sp"
+                        android:fontFamily="sans-serif-bold" />
+
+                    <View
+                        android:layout_width="0dp"
+                        android:layout_height="1dp"
+                        android:layout_weight="1" />
+
+                    <TextView
+                        android:id="@+id/txt_dialog_progress_bytes"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="197 MB / 438 MB"
+                        android:textColor="#8E92A8"
+                        android:textSize="11sp"
+                        android:fontFamily="sans-serif" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <!-- Actions Row -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical">
+
+                <Button
+                    android:id="@+id/btn_dialog_action"
+                    android:layout_width="wrap_content"
+                    android:layout_height="48dp"
+                    android:text="⬇ Descargar juego (438 MB)"
+                    android:textColor="#FFFFFF"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    android:background="@drawable/bg_button_rounded_accent"
+                    android:paddingStart="24dp"
+                    android:paddingEnd="24dp"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:nextFocusRight="@+id/btn_dialog_cancel"
+                    android:nextFocusUp="@+id/btn_dialog_close" />
+
+                <Button
+                    android:id="@+id/btn_dialog_cancel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="48dp"
+                    android:layout_marginStart="14dp"
+                    android:text="Cancelar"
+                    android:textColor="#E0E2EC"
+                    android:textSize="13sp"
+                    android:background="@drawable/bg_button_rounded_surface"
+                    android:paddingStart="20dp"
+                    android:paddingEnd="20dp"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:nextFocusLeft="@+id/btn_dialog_action"
+                    android:nextFocusUp="@+id/btn_dialog_close"
+                    android:visibility="gone" />
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

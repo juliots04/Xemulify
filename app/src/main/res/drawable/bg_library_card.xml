@@ -1,19 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
-    <!-- Enfocado en Android TV: borde de acento -->
+    <!-- Enfocado: cambio puro de fondo con luminancia elevada, sin borde morado -->
     <item android:state_focused="true">
         <shape android:shape="rectangle">
-            <solid android:color="@color/surface_2" />
-            <stroke android:width="2dp" android:color="@color/accent" />
+            <solid android:color="#2D313E" />
             <corners android:radius="16dp" />
         </shape>
     </item>
 
-    <!-- Normal: card AMOLED minimalista -->
+    <!-- Presionado -->
+    <item android:state_pressed="true">
+        <shape android:shape="rectangle">
+            <solid android:color="#353A4B" />
+            <corners android:radius="16dp" />
+        </shape>
+    </item>
+
+    <!-- Normal: card tonal sin bordes -->
     <item>
         <shape android:shape="rectangle">
             <solid android:color="@color/surface_1" />
-            <stroke android:width="1dp" android:color="@color/stroke_subtle" />
             <corners android:radius="16dp" />
         </shape>
     </item>

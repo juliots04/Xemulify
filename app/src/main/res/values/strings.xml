@@ -1,12 +1,17 @@
 <resources>
     <string name="app_name">Xemulify</string>
 
-    <!-- Biblioteca -->
+    <!-- Biblioteca y Tienda -->
     <string name="library_title">Xemulify · PS1</string>
+    <string name="row_store">Tienda</string>
     <string name="row_games">Biblioteca</string>
-    <string name="row_settings">Ajustes</string>
+    <string name="row_shortcuts">Accesos Directos</string>
+    <string name="row_settings">Configuración</string>
+    <string name="btn_add_player">Vincular nuevo mando +</string>
     <string name="card_playstation">PlayStation 1</string>
+    <string name="section_store_label">Tienda de Juegos</string>
     <string name="section_games_label">Tu biblioteca</string>
+    <string name="section_shortcuts_label">Accesos Directos</string>
     <string name="section_settings_label">Configuración</string>
 
     <string name="action_add_game">Añadir juego</string>
@@ -62,9 +67,7 @@
     <string name="cheat_code_required">Escribe el código del cheat.</string>
 
     <!-- Accesos directos -->
-    <string name="row_shortcuts">Accesos directos</string>
-    <string name="section_shortcuts_label">Apps y accesos directos</string>
-    <string name="action_add_app">Accesos directos</string>
+    <string name="action_add_app">Añadir acceso directo</string>
     <string name="action_add_app_sub">Añade una app instalada</string>
     <string name="card_app">App</string>
     <string name="apps_none">No se encontraron apps instaladas.</string>

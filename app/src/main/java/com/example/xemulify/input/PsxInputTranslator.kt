@@ -23,10 +23,24 @@ class PsxInputTranslator(
     @Volatile private var p2Map: Map<Int, PsxButton>,
     @Volatile private var gamepadMap: Map<Int, PsxButton>,
 ) {
-    private val dpad = arrayOf(DpadState(), DpadState())
+    private val dpad = arrayOf(DpadState(), DpadState(), DpadState(), DpadState())
 
     fun updateMapping(p1: Map<Int, PsxButton>, p2: Map<Int, PsxButton>, gamepad: Map<Int, PsxButton>) {
         p1Map = p1; p2Map = p2; gamepadMap = gamepad
+    }
+
+    /** Entrada directa desde un mando de smartphone remoto (Wi-Fi). */
+    fun handleRemoteButton(port: Int, keyCode: Int, pressed: Boolean) {
+        val safePort = port.coerceIn(0, dpad.size - 1)
+        val button = gamepadMap[keyCode] ?: PsxButton.values().firstOrNull { it.defaultGamepadKeyCode == keyCode }
+        button?.let { emit(it, safePort, pressed) }
+    }
+
+    /** Movimiento analógico desde un mando de smartphone remoto (Wi-Fi). */
+    fun handleRemoteMotion(port: Int, axisSource: Int, x: Float, y: Float) {
+        val safePort = port.coerceIn(0, dpad.size - 1)
+        val source = if (axisSource == 1) GLRetroView.MOTION_SOURCE_ANALOG_LEFT else GLRetroView.MOTION_SOURCE_ANALOG_RIGHT
+        runCatching { retroView.sendMotionEvent(source, x, y, safePort) }
     }
 
     fun handleKeyEvent(event: KeyEvent): Boolean {
@@ -62,7 +76,7 @@ class PsxInputTranslator(
     }
 
     fun releaseAll() {
-        for (port in 0..1) {
+        for (port in 0 until dpad.size) {
             dpad[port].reset()
             emitDpad(port)
             for (button in PsxButton.values()) {

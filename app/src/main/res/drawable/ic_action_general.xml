@@ -5,12 +5,12 @@
     android:viewportHeight="48">
     <!-- three sliders -->
     <path
-        android:strokeColor="#9A9AA5"
+        android:strokeColor="#FFFFFF"
         android:strokeWidth="2.6"
         android:strokeLineCap="round"
         android:pathData="M14,17h20M14,24h20M14,31h20"/>
     <path
-        android:fillColor="#7C5CFF"
+        android:fillColor="#E2E2EA"
         android:pathData="M20,17m-4,0a4,4 0,1,0 8,0a4,4 0,1,0 -8,0"/>
     <path
         android:fillColor="#F472B6"

@@ -129,6 +129,24 @@
                     android:id="@+id/val_slot"
                     style="@style/SettingValue" />
             </LinearLayout>
+
+            <!-- Modo de inicio (TV / Celular Mando) -->
+            <LinearLayout
+                android:id="@+id/row_startup_mode"
+                style="@style/SettingRow">
+
+                <LinearLayout style="@style/SettingRowText">
+                    <TextView style="@style/SettingRowTitle" android:text="Modo de inicio al abrir la app" />
+                    <TextView style="@style/SettingRowSub" android:text="Elegir entre modo Consola/TV o modo Mando de Celular" />
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/val_startup_mode"
+                    style="@style/SettingValue"
+                    android:text="Cambiar"
+                    android:drawableEnd="@drawable/ic_chevron_right"
+                    android:drawablePadding="6dp" />
+            </LinearLayout>
         </LinearLayout>
     </ScrollView>
 </LinearLayout>

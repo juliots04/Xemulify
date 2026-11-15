@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Enfocado (TV remote / Selección) - Fondo translúcido con más brillo -->
+    <item android:state_focused="true">
+        <shape android:shape="rectangle">
+            <gradient
+                android:angle="135"
+                android:startColor="#CC343A4D"
+                android:endColor="#B3242836" />
+            <corners android:radius="20dp" />
+        </shape>
+    </item>
+
+    <!-- Presionado (Touch / Clic) -->
+    <item android:state_pressed="true">
+        <shape android:shape="rectangle">
+            <solid android:color="#E63C4358" />
+            <corners android:radius="20dp" />
+        </shape>
+    </item>
+
+    <!-- Estado normal por defecto - Fondo sutilmente transparente estilo cristal oscuro -->
+    <item>
+        <shape android:shape="rectangle">
+            <gradient
+                android:angle="135"
+                android:startColor="#991C1E2A"
+                android:endColor="#8012131C" />
+            <corners android:radius="20dp" />
+        </shape>
+    </item>
+</selector>

@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:background="#15151C"
+    android:padding="20dp">
+
+    <!-- Título y Subtítulo -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Vincular con tu Consola"
+        android:textColor="@color/text_primary"
+        android:textSize="24sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="6dp"
+        android:text="Ingresa el código PIN de 6 caracteres que aparece en la TV"
+        android:textColor="@color/text_secondary"
+        android:textSize="13sp" />
+
+    <!-- Casillas interactivas del PIN de 6 caracteres -->
+    <com.example.xemulify.ui.PinBoxesView
+        android:id="@+id/pin_boxes_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:focusable="true"
+        android:focusableInTouchMode="true" />
+
+    <!-- Fila de botones de acción redondeados -->
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_marginTop="24dp">
+
+        <!-- Botón Conectar / Estado Conectando interactivo -->
+        <FrameLayout
+            android:id="@+id/btn_connect_pin"
+            android:layout_width="170dp"
+            android:layout_height="48dp"
+            android:background="@drawable/bg_button_rounded_accent"
+            android:clickable="true"
+            android:focusable="true"
+            android:layout_marginEnd="14dp">
+
+            <!-- Estado normal: Texto "CONECTAR" -->
+            <TextView
+                android:id="@+id/txt_btn_connect"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="CONECTAR"
+                android:textStyle="bold"
+                android:textColor="#FFFFFF"
+                android:textSize="14sp"
+                android:letterSpacing="0.04" />
+
+            <!-- Estado de carga: Circle Loading + "CONECTANDO" -->
+            <LinearLayout
+                android:id="@+id/layout_btn_loading"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:visibility="gone">
+
+                <ProgressBar
+                    android:id="@+id/progress_connecting"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:indeterminate="true"
+                    android:indeterminateTint="#FFFFFF"
+                    android:indeterminateTintMode="src_in"
+                    android:layout_marginEnd="8dp" />
+
+                <TextView
+                    android:id="@+id/txt_btn_connecting"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="CONECTANDO"
+                    android:textStyle="bold"
+                    android:textColor="#FFFFFF"
+                    android:textSize="13sp"
+                    android:letterSpacing="0.04" />
+
+            </LinearLayout>
+
+        </FrameLayout>
+
+        <!-- Botón Escanear QR simplificado con icono SVG -->
+        <Button
+            android:id="@+id/btn_scan_qr"
+            android:layout_width="wrap_content"
+            android:layout_height="48dp"
+            android:text="ESCANEAR CÓDIGO QR"
+            android:drawableStart="@drawable/ic_qr_code"
+            android:drawablePadding="10dp"
+            android:paddingStart="22dp"
+            android:paddingEnd="22dp"
+            android:textStyle="bold"
+            android:textColor="@color/text_primary"
+            android:background="@drawable/bg_button_rounded_surface"
+            android:layout_marginStart="14dp" />
+
+    </LinearLayout>
+
+</LinearLayout>
